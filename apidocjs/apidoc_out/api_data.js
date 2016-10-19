@@ -1,0 +1,1212 @@
+define({ "api": [
+  {
+    "type": "post",
+    "url": "/categories/",
+    "title": "Create Category",
+    "version": "0.1.0",
+    "name": "CreateCategory",
+    "group": "Category",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/categories/</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category Name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "parent_category",
+            "description": "<p>The Parent Category-ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X POST -u user:password http://host:port/categories/ --data \"name=arg1&parent_category=arg3\"",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "category",
+            "description": "<p>Category object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.name",
+            "description": "<p>Category Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "category.parent_category",
+            "description": "<p>The Parent Category-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "category.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response:",
+          "content": "{\n    \"id\":7,\n    \"name\":\"Car\",\n    \"parent_category\":5,\n    \"created\":\"2016-10-19T00:06:39.782367Z\",\n    \"owner\":\"mtkachenko\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/categorydocs.py",
+    "groupTitle": "Category",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>(400) Wrong, incorrect request.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Conflict",
+            "description": "<p>(409) Conflict.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/categories/:id",
+    "title": "Delete Category",
+    "version": "0.1.0",
+    "name": "DeleteCategory",
+    "group": "Category",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/categories/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Category ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X DELETE -u user:password -i http://host:port/categories/<pk>/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Response Example",
+          "content": "HTTP/1.0 204 No Content\nDate: Tue, 18 Oct 2016 22:54:19 GMT\nServer: WSGIServer/0.2 CPython/3.4.3+\nVary: Accept, Cookie\nX-Frame-Options: SAMEORIGIN\nAllow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/categorydocs.py",
+    "groupTitle": "Category",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>(403) Only authenticated Admins can modify data.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/categories/",
+    "title": "Get All Categories",
+    "version": "0.1.0",
+    "name": "GetCategories",
+    "group": "Category",
+    "permission": [
+      {
+        "name": "no-auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/categories/</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://host:port/categories/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array[]",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>List of Categories (Array of Objects).</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "categories.category",
+            "description": "<p>Category object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "categories.category.id",
+            "description": "<p>Category-IDs.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "categories.category.name",
+            "description": "<p>Category Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "categories.category.parent_category",
+            "description": "<p>Parent Category ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "category.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response:",
+          "content": "[{\n    \"id\":7,\n    \"name\":\"Car\",\n    \"parent_category\":5,\n    \"created\":\"2016-10-19T00:06:39.782367Z\",\n    \"owner\":\"mtkachenko\"\n},{\n    \"id\":8,\n    \"name\":\"Carutsa\",\n    \"parent_category\":5,\n    \"created\":\"2016-10-19T00:08:39.782367Z\",\n    \"owner\":\"mtkachenko\"\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/categorydocs.py",
+    "groupTitle": "Category",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>(400) Wrong, incorrect request.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/categories/<pk>",
+    "title": "Get Category By ID",
+    "version": "0.1.0",
+    "name": "GetCategory",
+    "group": "Category",
+    "permission": [
+      {
+        "name": "no-auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/categories/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The Category-ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i http://host:port/categories/<pk>/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "category",
+            "description": "<p>Category object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.name",
+            "description": "<p>Category Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "category.parent_category",
+            "description": "<p>The Parent Category-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "category.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response:",
+          "content": "{\n    \"id\":7,\n    \"name\":\"Car\",\n    \"parent_category\":5,\n    \"created\":\"2016-10-19T00:06:39.782367Z\",\n    \"owner\":\"mtkachenko\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/categorydocs.py",
+    "groupTitle": "Category",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "put",
+    "url": "/categories/<pk>",
+    "title": "Update Category",
+    "version": "0.1.0",
+    "name": "UpdateCategory",
+    "group": "Category",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/categories/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Category Name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "parent_category",
+            "description": "<p>The Parent Category-ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X PUT -u user:password http://host:port/categories/<pk>/ --data \"name=arg1&parent_category=arg3\"",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "category",
+            "description": "<p>Category object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.name",
+            "description": "<p>Category Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "category.parent_category",
+            "description": "<p>The Parent Category-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "category.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response:",
+          "content": "{\n    \"id\":7,\n    \"name\":\"Car\",\n    \"parent_category\":5,\n    \"created\":\"2016-10-19T00:06:39.782367Z\",\n    \"owner\":\"mtkachenko\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/categorydocs.py",
+    "groupTitle": "Category",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>(403) Only authenticated Admins can modify data.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/items/",
+    "title": "Create Item",
+    "version": "0.1.0",
+    "name": "CreateItem",
+    "group": "Item",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/items/</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Item Name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Item Price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number[]",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>Categories Item belongs to.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X POST -u user:password http://host:port/items/ --data \"name=arg1&price=arg2&categories=arg3&categories=arg4\"",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "item",
+            "description": "<p>Item object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "item.id",
+            "description": "<p>The Item-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "item.name",
+            "description": "<p>Item Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "item.price",
+            "description": "<p>Item Price.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "item.categories",
+            "description": "<p>Categories Item belongs to.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "item.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "item.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response:",
+          "content": "{\n  \"id\":7,\n  \"name\":\"test\",\n  \"price\":\"30.00\",\n  \"categories\":[4,5],\n  \"created\":\"2016-10-18T23:17:32.001848Z\",\n  \"owner\":\"mtkachenko\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/itemdocs.py",
+    "groupTitle": "Item",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>(400) Wrong, incorrect request.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Conflict",
+            "description": "<p>(409) Conflict.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/items/:id",
+    "title": "Delete Item",
+    "version": "0.1.0",
+    "name": "DeleteItem",
+    "group": "Item",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/items/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Item ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X DELETE -u user:password -i http://host:port/items/<pk>/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Response Example",
+          "content": "HTTP/1.0 204 No Content\nDate: Tue, 18 Oct 2016 22:54:19 GMT\nServer: WSGIServer/0.2 CPython/3.4.3+\nVary: Accept, Cookie\nX-Frame-Options: SAMEORIGIN\nAllow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/itemdocs.py",
+    "groupTitle": "Item",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>(403) Only authenticated Admins can modify data.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/items/<pk>",
+    "title": "Get Item By ID",
+    "version": "0.1.0",
+    "name": "GetItem",
+    "group": "Item",
+    "permission": [
+      {
+        "name": "no-auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/items/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The Item-ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i http://host:port/items/<pk>/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "item",
+            "description": "<p>Item object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "item.id",
+            "description": "<p>The Item-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "item.name",
+            "description": "<p>Item Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "item.price",
+            "description": "<p>Item Price.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "item.categories",
+            "description": "<p>Categories Item belongs to.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "item.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "item.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      }
+    },
+    "filename": "../apidocjs/itemdocs.py",
+    "groupTitle": "Item",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/items/",
+    "title": "Get All Items",
+    "version": "0.1.0",
+    "name": "GetItems",
+    "group": "Item",
+    "permission": [
+      {
+        "name": "no-auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/items/</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl http://host:port/items/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array[]",
+            "optional": false,
+            "field": "items",
+            "description": "<p>List of Items (Array of Objects).</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "items.item",
+            "description": "<p>Item object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "items.item.id",
+            "description": "<p>The Item-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "items.item.name",
+            "description": "<p>Item Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "items.item.price",
+            "description": "<p>Item Price.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "items.item.categories",
+            "description": "<p>Categories Item belongs to.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "items.item.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "items.item.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response:",
+          "content": "[{\n  \"id\": 1,\n  \"name\": \"vasabi\",\n  \"price\": \"43.31\",\n  \"categories\": [4,5],\n  \"created\": \"2016-10-18T15:28:36.640547Z\",\n  \"owner\": \"mtkachenko\"}, ...\n]}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/itemdocs.py",
+    "groupTitle": "Item",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>(400) Wrong, incorrect request.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "put",
+    "url": "/items/<pk>",
+    "title": "Update Item",
+    "version": "0.1.0",
+    "name": "UpdateItem",
+    "group": "Item",
+    "permission": [
+      {
+        "name": "auth"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/items/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Item ID.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Item Name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Item Price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number[]",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>Categories Item belongs to.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -X PUT -u user:password http://host:port/items/<pk>/ --data \"name=arg1&price=arg2&categories=arg3&categories=arg4\"",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "item",
+            "description": "<p>Item object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "item.id",
+            "description": "<p>The Item-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "item.name",
+            "description": "<p>Item Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "item.price",
+            "description": "<p>Item Price.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "item.categories",
+            "description": "<p>Categories Item belongs to.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "DateTime",
+            "optional": false,
+            "field": "item.created",
+            "description": "<p>Date created</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "item.owner",
+            "description": "<p>Owner Username</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response Example",
+          "content": "{\n    \"id\":2,\n    \"name\":\"vasabi\",\n    \"price\":\"30.00\",\n    \"categories\":[4,5],\n    \"created\":\"2016-10-18T16:02:14.508570Z\",\n    \"owner\":\"mtkachenko\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/itemdocs.py",
+    "groupTitle": "Item",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>(403) Only authenticated Admins can modify data.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/user/<id>",
+    "title": "Get User By ID",
+    "version": "0.1.0",
+    "name": "GetUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/users/1</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The Users-ID.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -u user:password -i http://host:port/users/<pk>/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The Users-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "items",
+            "description": "<p>Item IDs created by User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "SHA",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Encrypted user password.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response Example:",
+          "content": "{\n    \"id\":2,\n    \"username\":\"admin\",\n    \"items\":[],\n    \"email\":\"admin@gmail.com\",\n    \"password\":\"pbkdf2_sha256$30000$JY9Cge2olIxq$hSZlZx0YNUmdCq71wpbMHfFqW/wC+3nGfRv71MTgYHQ=\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/userdocs.py",
+    "groupTitle": "User",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>(404) Item not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>(403) Only authenticated Admins can modify data.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/users/",
+    "title": "Get Users",
+    "version": "0.1.0",
+    "name": "GetUsers",
+    "group": "User",
+    "permission": [
+      {
+        "name": "admin"
+      }
+    ],
+    "description": "<p>Try it: http://127.0.0.1:8000/users/</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -u user:password -i http://host:port/users/",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array[]",
+            "optional": false,
+            "field": "users",
+            "description": "<p>List of Users (Array of Objects).</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "users.user",
+            "description": "<p>User object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "users.user.id",
+            "description": "<p>The Users-ID.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "users.user.username",
+            "description": "<p>User Name.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number[]",
+            "optional": false,
+            "field": "users.user.items",
+            "description": "<p>Items created by User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "users.user.email",
+            "description": "<p>User email.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "SHA",
+            "optional": false,
+            "field": "users.user.password",
+            "description": "<p>Encrypted user password.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Response Example:",
+          "content": "[{\n    \"id\":2,\n    \"username\":\"admin\",\n    \"items\":[],\n    \"email\":\"admin@gmail.com\",\n    \"password\":\"pbkdf2_sha256$30000$JY9Cge2olIxq$hSZlZx0YNUmdCq71wpbMHfFqW/wC+3nGfRv71MTgYHQ=\"\n  },{\n    \"id\":1,\n    \"username\":\"mtkachenko\",\n    \"items\":[2,3,4,5,6,7],\n    \"email\":\"\",\n    \"password\":\"pbkdf2_sha256$30000$HtpEULLAFVnk$0csDW0QMw46AR/r6n9ufkDVgaiugt/5HWUPCS5rynQQ=\"\n}]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../apidocjs/userdocs.py",
+    "groupTitle": "User",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>(403) Only authenticated Admins can modify data.</p>"
+          }
+        ]
+      }
+    }
+  }
+] });

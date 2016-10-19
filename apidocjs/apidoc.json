@@ -1,0 +1,7 @@
+{
+    "name": "Restful Hummer API",
+    "version": "0.1.0",
+    "description": "Documentation to the amazing Hummer API",
+    "title": "Read The Docs",
+    "url" : "http://127.0.0.1:8000"
+}
