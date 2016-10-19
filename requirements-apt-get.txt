@@ -1,0 +1,5 @@
+python3.5
+python-dev
+python-pip
+npm
+nodejs

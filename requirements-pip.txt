@@ -1,0 +1,4 @@
+djangorestframework-3.4.7
+django-1.10.2
+drfdocs
+psycopg2==2.6.2
