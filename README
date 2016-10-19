@@ -10,6 +10,10 @@ Welcome
     sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 ```
+### Update your filesystem, please :)
+```
+sudo updatedb
+```
 
 ### Add a cronjob
 ```sh
@@ -20,11 +24,6 @@ Welcome
     #install new cron file
     crontab tmpcron
     rm tmpcron
-```
-
-### Update your filesystem
-```
-sudo updatedb
 ```
 
 ### Our documentation (ApiDocJS):
