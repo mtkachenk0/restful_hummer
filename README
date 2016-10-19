@@ -1,0 +1,36 @@
+Welcome
+### Python 3.x required (thanks to `drfdocs`)
+
+
+```
+    sudo apt-get install -y --force-yes $(cat requirements-apt-get.txt)
+    sudo pip install -r requirements-pip.txt
+    sudo npm install apidoc -g
+    # if you get /usr/bin/node: NoSuchFile Error -> do the following
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+```
+
+### Add a cronjob
+```sh
+    crontab -l > tmpcron
+    # echo new cron into cron file
+    #     m  h dom mon dow command
+    echo "*  *  *   *   *  /path/to/script/price_increaser.py >> /tmp/price_increaser.log 2>&1" >> tmpcron
+    #install new cron file
+    crontab tmpcron
+    rm tmpcron
+```
+
+### Update your filesystem
+```
+sudo updatedb
+```
+
+### Our documentation (ApiDocJS):
+```
+xdg-open $(locate /apidocjs/apidoc_out/index.html)
+# or (DRFdocs)
+xdg-open "http://localhost:8000/docs/"
+```
+
